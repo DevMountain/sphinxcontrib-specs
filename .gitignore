@@ -1,0 +1,10 @@
+.python-version
+__pycache__
+*.pyc
+
+dist
+_build
+
+.vscode
+*.code-workspace
+.DS_Store
