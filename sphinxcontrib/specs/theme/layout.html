@@ -1,0 +1,19 @@
+{#
+  specs/layout.html
+  ~~~~~~~~~~~~~~~~~
+
+  This is a Django template, not a standard HTML page, so we don't need HTML
+  boilerplate.
+#}
+
+{%- block content %}
+  <div class="specs-content">
+    <main>
+      {% block body %} {% endblock %}
+    </main>
+  </div>
+
+  {%- for js in script_files %}
+    {{ js_tag(js) }}
+  {%- endfor %}
+{%- endblock %}
