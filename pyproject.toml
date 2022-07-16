@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "sphinxcontrib-template"
+name = "sphinxcontrib-specs"
 version = "0.1.0"
-description = "Template repository for Sphinx extensions."
+description = "Extensions for building Specializations content."
 authors = ["Your Name <you@example.com>"]
 license = "MPL-2.0"
 packages = [{ include = "sphinxcontrib" }]
