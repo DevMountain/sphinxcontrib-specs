@@ -1,9 +1,12 @@
 """Example test."""
 
 import pytest
+from html5lib import HTMLParser
+
 from .testutil import flat_dict, tail_check, check_xpath
 
 etree_cache = {}
+
 
 @pytest.fixture(scope="module")
 def cached_etree_parse():
@@ -20,9 +23,9 @@ def cached_etree_parse():
     yield parse
     etree_cache.clear()
 
-@pytest.mark.sphinx(buildername="html", testroot="builder-example")
+
+@pytest.mark.sphinx(buildername="specs", testroot="builder-example")
 def test_example_test_build(app):
     app.build()
 
     assert (app.outdir / "index.html").exists()
-

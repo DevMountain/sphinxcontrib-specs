@@ -8,13 +8,12 @@ This is copied from https://github.com/sphinx-doc/sphinx/blob/9e1b4a8f1678e26670
 import re
 from itertools import chain, cycle
 
-from html5lib import HTMLParser
-import pytest
 
 def flat_dict(d):
     return chain.from_iterable(
         [zip(cycle([fname]), values) for fname, values in d.items()]
     )
+
 
 def tail_check(check):
     rex = re.compile(check)
@@ -73,4 +72,3 @@ def check_xpath(etree, fname, path, check, be_found=True):
             fname,
             [node.text for node in nodes],
         )
-
