@@ -1,39 +1,101 @@
-The basic Sphinx documentation for testing
-==========================================
+======
+Unit 1
+======
 
-Sphinx is a tool that makes it easy to create intelligent and beautiful
-documentation for Python projects (or other documents consisting of multiple
-reStructuredText sources), written by Georg Brandl.  It was originally created
-for the new Python documentation, and has excellent facilities for Python
-project documentation, but C/C++ is supported as well, and more languages are
-planned.
+Introduction
+============
 
-Sphinx uses reStructuredText as its markup language, and many of its strengths
-come from the power and straightforwardness of reStructuredText and its parsing
-and translating suite, the Docutils.
+The goal of this unit is to create a interactive command line game using Python.
 
-features
---------
+During this unit, you will be learning how to use thing to thing. During this unit, you
+will be learning how to use thing to thing. During this unit, you will be learning how to
+use thing to thing. During this unit, you will be learning how to use thing to thing.
+During this unit, you will be learning how to use thing to thing. During this unit, you
+will be learning how to use thing to thing. During this unit, you will be learning how to
+use thing to thing.
 
-Among its features are the following:
+Concepts and Objectives
+=======================
 
-- Output formats: HTML (including derivative formats such as HTML Help, Epub
-  and Qt Help), plain text, manual pages and LaTeX or direct PDF output
-  using rst2pdf
+.. objectivesindex::
 
-- Extensive cross-references: semantic markup and automatic links
-  for functions, classes, glossary terms and similar pieces of information
+Python Basics
+=============
 
-- Hierarchical structure: easy definition of a document tree, with automatic
-  links to siblings, parents and children
+Summary
+-------
 
-- Automatic indices: general index as well as a module index
+.. objectives::
 
-- Code handling: automatic highlighting using the Pygments highlighter
+   - student can create a variable
 
-- Flexible HTML output using the Jinja 2 templating engine
+   - student can write a function
 
-- Various extensions are available, e.g. for automatic testing of snippets
-  and inclusion of appropriately formatted docstrings
+   - student can use print statement
 
-- Setuptools integration
+Python is words about Python. This is more information about Python, why it matters,
+why students are learning this, etc. This is an important concept that we want to make
+sure they understand.
+
+Content
+-------
+
+.. contentlist::
+
+   .. video:: Title of video
+      :link: https://www.youtube.com/watch?v=v4yqYYFlhTM
+
+   .. video:: Title of video
+      :link: https://www.youtube.com/watch?v=v4yqYYFlhTM
+
+Project: Part 1
+===============
+
+Summary
+-------
+
+In this section of the project, you will do this thing. In this section of the project,
+you will do this thing. In this section of the project, you will do this thing. In this
+section of the project, you will do this thing. In this section of the project, you will
+do this thing.
+
+Steps
+-----
+
+.. stepslist::
+
+   .. step:: Do this thing
+
+      How to do this thing.
+
+   .. step:: Then this thing
+
+      To do this thing, first you'll need to do this other thing. We do this because of
+      reasons. Here's what that looks like in code.
+
+      .. code-block:: python
+
+         print("hi")
+
+   .. step:: Finally this thing
+
+      Do the thing
+
+Loops in Python
+===============
+
+Summary
+-------
+
+.. objectives::
+
+   - student can create a variable
+
+   - student can write a function
+
+   - student can use print statement
+
+Python is words about Python. This is more information about Python, why it matters,
+why students are learning this, etc. This is an important concept that we want to make
+sure they understand.
+
