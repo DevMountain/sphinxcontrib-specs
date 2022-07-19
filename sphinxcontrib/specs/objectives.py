@@ -26,12 +26,12 @@ class Objectives(SphinxDirective):
     has_content = True
 
     def run(self) -> List[Node]:
-        subnode = objectives()
-        subnode.document = self.state.document
-        self.state.nested_parse(self.content, self.content_offset, subnode)
+        node = objectives()
+        node.document = self.state.document
+        self.state.nested_parse(self.content, self.content_offset, node)
 
-        if len(subnode.children) != 1 or not isinstance(
-            subnode.children[0], nodes.bullet_list
+        if len(node.children) != 1 or not isinstance(
+            node.children[0], nodes.bullet_list
         ):
             logger.warning(
                 ".. objectives:: content is not a bulleted list",
@@ -39,9 +39,9 @@ class Objectives(SphinxDirective):
             )
             return []
 
-        subnode["parent_section"] = self.state.parent.parent
+        node["parent_section"] = self.state.parent.parent
 
-        return [subnode]
+        return [node]
 
 
 def visit_objectives(self, node: objectives) -> None:
