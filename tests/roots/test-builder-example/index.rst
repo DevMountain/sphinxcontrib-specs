@@ -40,13 +40,18 @@ sure they understand.
 Content
 -------
 
-.. contentlist::
+.. download:: Starter code
+   :link: ../starter.zip
 
-   .. video:: Title of video
-      :link: https://www.youtube.com/watch?v=v4yqYYFlhTM
+.. video:: Title of video
+   :link: https://www.youtube.com/watch?v=v4yqYYFlhTM
 
-   .. video:: Title of video
-      :link: https://www.youtube.com/watch?v=v4yqYYFlhTM
+   Description.
+
+.. webpage:: Name of webpage
+   :link: https://en.wikipedia.org/wiki/Coding_bootcamp
+
+   Description of webpage.
 
 Project: Part 1
 ===============
