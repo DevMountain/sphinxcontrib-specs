@@ -1,5 +1,6 @@
 """sphinxcontrib.specs.content"""
 
+from lib2to3.pytree import Base
 from typing import TYPE_CHECKING, Dict, Any, List
 
 from docutils.nodes import Node
@@ -10,14 +11,9 @@ if TYPE_CHECKING:
     from sphinx.application import Sphinx
 
 
-class ContentList(SphinxDirective):
-    has_content = True
+class BaseContentDirective(SphinxDirective):
+    contenttype_name = ""
 
-    def run(self) -> List[Node]:
-        return []
-
-
-class Video(SphinxDirective):
     has_content = True
     first_argument_whitespace = True
     options = {"link": directives.unchanged}
@@ -26,6 +22,18 @@ class Video(SphinxDirective):
         return []
 
 
+class Download(BaseContentDirective):
+    contenttype_name = "download"
+
+
+class Video(BaseContentDirective):
+    contenttype_name = "video"
+
+
+class Webpage(BaseContentDirective):
+    contenttype_name = "webpage"
+
+
 def setup(app: "Sphinx") -> Dict[str, Any]:
-    app.add_directive("contentlist", ContentList)
-    app.add_directive("video", Video)
+    for directive in [Download, Video, Webpage]:
+        app.add_directive(directive.contenttype_name, directive)
