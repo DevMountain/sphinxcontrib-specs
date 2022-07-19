@@ -1,3 +1,8 @@
+"""sphinxcontrib.specs.builder
+
+The Specializations builder.
+"""
+
 from sphinx.builders.html import StandaloneHTMLBuilder
 
 
