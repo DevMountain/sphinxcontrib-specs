@@ -1,1 +1,1 @@
-# sphinxcontrib.extensionname
+# sphinxcontrib.specs
