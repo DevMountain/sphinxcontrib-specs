@@ -3,6 +3,15 @@
 :root {
   --bs-body-font-family: "Source Sans 3", var(--bs-font-sans-serif);
   --bs-body-font-size: 1.1rem;
+  --bs-primary: #009adf;
+  --bs-primary-rgb: 0, 154, 223;
+  --bs-link-color: var(--bs-primary);
+  --bs-link-hover-color: #005684;
+}
+
+.accordion {
+  --bs-accordion-active-color: var(--bs-link-hover-color);
+  --bs-accordion-active-bg: #ebf9ff;
 }
 
 .specs-layout {
@@ -52,35 +61,47 @@
 .headerlink {
   padding: 0 0.175rem;
   font-weight: 400;
-  color: rgba(13, 110, 253, 0.5);
+  color: rgba(var(--bs-primary-rgb), 0.5);
   text-decoration: none;
   opacity: 0;
-  transition: color 0.15s ease-in-out, opacity 0.15s ease-in-out;
-}
-
-.specscontent-body-title,
-.specscontent-link .card,
-.specscontent-icon {
-  transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-}
-
-.specscontent-link:hover .specscontent-body-title,
-.specscontent-link:hover .card {
-  color: var(--bs-primary) !important;
-  border-color: var(--bs-primary) !important;
-}
-
-.specscontent-link:hover .specscontent-icon {
-  color: white !important;
 }
 
 h1:hover .headerlink,
 h2:hover .headerlink,
 h3:hover .headerlink,
 h4:hover .headerlink {
-  color: #0d6efd;
+  color: var(--bs-primary);
   text-decoration: none;
   opacity: 1;
+}
+
+.headerlink:hover {
+  color: var(--bs-link-hover-color) !important;
+}
+
+.specscontent-link .card,
+.specscontent-link .specscontent-body-title,
+.specscontent-icon,
+.headerlink,
+a {
+  transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    opacity 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.specscontent-link:hover .specscontent-body-title {
+  color: var(--bs-primary) !important;
+}
+
+.specscontent-body-title:hover {
+  color: var(--bs-link-hover-color) !important;
+}
+
+.specscontent-link:hover .card {
+  border-color: var(--bs-primary) !important;
+}
+
+.specscontent-link:hover .specscontent-icon {
+  background-color: var(--bs-primary) !important;
 }
 
 .objectivesindex-item {
@@ -125,4 +146,28 @@ a {
 
 .specs-sidebar nav > ul > li > ul ul {
   padding-left: 1rem;
+}
+
+.specssteps-list {
+  counter-reset: step;
+}
+
+.specssteps-list .accordion-item {
+  counter-increment: step;
+}
+
+.specssteps-list .accordion-button {
+  font-weight: 500;
+}
+
+.specssteps-list .accordion-button::before {
+  content: counter(step) ".";
+  padding-right: 0.5rem;
+  font-weight: 700;
+}
+
+.highlight {
+  padding: 1rem;
+  border: 1px solid var(--bs-border-color-translucent);
+  border-radius: calc(0.375rem - 1px);
 }

@@ -4,3 +4,4 @@ html_use_index = False
 html_sidebars = {"**": []}
 html_permalinks_icon = "#"
 smartquotes = False
+pygments_style = "default"

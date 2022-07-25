@@ -65,14 +65,10 @@ class StepsList(SphinxDirective):
     has_content = True
 
     def run(self) -> List[Node]:
-        node = steps_list()
-        wrapper = nodes.container(
-            "\n".join(self.content), classes=["specssteps"]
-        )
-        wrapper.document = self.state.document
-        self.state.nested_parse(self.content, self.content_offset, wrapper)
+        node = steps_list("\n".join(self.content))
 
-        node += [wrapper]
+        node.document = self.state.document
+        self.state.nested_parse(self.content, self.content_offset, node)
 
         return [node]
 
