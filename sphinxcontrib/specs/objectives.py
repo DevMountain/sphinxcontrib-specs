@@ -52,11 +52,11 @@ def depart_objectives(self, _) -> None:
     self.body.append("</div>\n")
 
 
-class objectivesindex(nodes.Element, nodes.Invisible):
+class objectivesindex(nodes.Sequential, nodes.Element):
     pass
 
 
-class objectivesindex_item(nodes.Sequential, nodes.Element):
+class objectivesindex_item(nodes.Part, nodes.Element):
     pass
 
 
@@ -101,7 +101,7 @@ class ObjectivesIndexTransformer(SphinxTransform):
                 "", *[child.deepcopy() for child in o.children]
             )
 
-            items += item
+            items += [item]
 
         return items
 
@@ -111,7 +111,7 @@ def visit_objectivesindex(self, node: objectivesindex) -> None:
         self.starttag(
             node,
             "dl",
-            classes=["objectivesindex"],
+            classes=["objectivesindex", "list-group"],
         )
     )
 
@@ -121,15 +121,15 @@ def depart_objectivesindex(self, node: objectivesindex) -> None:
 
 
 def visit_objectivesindex_item(self, node: objectivesindex_item) -> None:
-    pass
+    self.body.append('<div class="objectivesindex-item list-group-item">\n')
 
 
 def depart_objectivesindex_item(self, node: objectivesindex_item) -> None:
-    pass
+    self.body.append("</div>\n")
 
 
 def visit_objectivesindex_name(self, node: objectivesindex_name) -> None:
-    self.body.append(self.starttag(node, "dt"))
+    self.body.append(self.starttag(node, "dt", classes=["h5"]))
     self.body.append(f'<a href="#{node["parent_section_ref"]}">\n')
 
 
