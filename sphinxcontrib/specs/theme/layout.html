@@ -6,10 +6,27 @@
   boilerplate.
 #}
 
+{%- for css in css_files %}
+  {%- if css|attr("filename") %}
+    {{ css_tag(css) }}
+  {%- else %}
+    <link rel="stylesheet" href="{{ pathto(css, 1)|e }}" type="text/css" />
+  {%- endif %}
+{%- endfor %}
+
 {%- block content %}
-  <div class="specs-content">
-    <main>
-      {% block body %} {% endblock %}
+  <div class="specs specs-layout">
+    <aside class="specs-sidebar">
+      <nav>
+        {{ toc }}
+      </nav>
+    </aside>
+
+    <main class="specs-main">
+      <div class="specs-resources"></div>
+      <div class="specs-content">
+        {% block body %} {% endblock %}
+      </div>
     </main>
   </div>
 

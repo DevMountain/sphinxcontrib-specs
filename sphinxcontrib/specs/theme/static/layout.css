@@ -1,0 +1,124 @@
+.specs-layout {
+  display: grid;
+  grid-template-areas: "sidebar main";
+  grid-template-columns: 1fr 5fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.specs-sidebar {
+  grid-area: sidebar;
+  position: sticky;
+  top: 3rem;
+  display: block !important;
+  height: calc(100vh - 4rem);
+  padding-left: 0.25rem;
+  margin-left: -0.25rem;
+  overflow-y: auto;
+}
+
+.specs-main {
+  display: grid;
+  grid-area: main;
+  grid-template-areas:
+    "intro toc"
+    "content toc";
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 4fr 1fr;
+  gap: inherit;
+}
+
+.specs-content {
+  grid-area: content;
+}
+
+.specs-content section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.specs-resources {
+  grid-area: toc;
+}
+
+.headerlink {
+  padding: 0 0.175rem;
+  font-weight: 400;
+  color: rgba(13, 110, 253, 0.5);
+  text-decoration: none;
+  opacity: 0;
+  transition: color 0.15s ease-in-out, opacity 0.15s ease-in-out;
+}
+
+.specscontent-body-title,
+.specscontent-link .card,
+.specscontent-icon {
+  transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.specscontent-link:hover .specscontent-body-title,
+.specscontent-link:hover .card {
+  color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+}
+
+.specscontent-link:hover .specscontent-icon {
+  color: white !important;
+}
+
+h1:hover .headerlink,
+h2:hover .headerlink,
+h3:hover .headerlink,
+h4:hover .headerlink {
+  color: #0d6efd;
+  text-decoration: none;
+  opacity: 1;
+}
+
+.objectivesindex-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.objectivesindex dd ul,
+.objectivesindex dd ul li:last-child p {
+  margin-bottom: 0;
+}
+
+.specssteps {
+  counter-reset: steps;
+}
+
+.specssteps details {
+  counter-increment: steps;
+}
+
+.specssteps-title::before {
+  content: counter(steps);
+}
+
+.specssteps-title::after {
+  content: "expand";
+  opacity: 0;
+  transition: color 0.15s ease-in-out, opacity 0.15s ease-in-out;
+  color: gray;
+}
+
+.specssteps summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.specssteps summary:hover .specssteps-title::after {
+  color: black;
+  opacity: 1;
+}
+
+a {
+  text-decoration: none;
+}
+
+.bi {
+  padding: 20px;
+}
