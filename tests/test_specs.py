@@ -68,15 +68,15 @@ def test_objectives(app, cached_etree_parse, fname, expect):
     flat_dict(
         {
             "index.html": [
-                ('.//dl[@class="objectivesindex"]/dt', ""),
-                ('.//dl[@class="objectivesindex"]/dd', ""),
+                ('.//dl[@class="objectivesindex list-group"]//dt', ""),
+                ('.//dl[@class="objectivesindex list-group"]//dd', ""),
                 # has link to section associated with <dt>
                 (
-                    './/dl[@class="objectivesindex"]/dt/a[@href="#python-basics"]',
+                    './/dl[@class="objectivesindex list-group"]//dt/a[@href="#python-basics"]',
                     "Python Basics",
                 ),
                 (
-                    './/dl[@class="objectivesindex"]/dt/a[@href="#loops-in-python"]',
+                    './/dl[@class="objectivesindex list-group"]//dt/a[@href="#loops-in-python"]',
                     "Loops in Python",
                 ),
             ]
