@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING, Dict, Any, List
 from docutils import nodes
 from docutils.nodes import Node
 from sphinx.util.docutils import SphinxDirective
+from sphinx.transforms import SphinxTransform
 
 if TYPE_CHECKING:
     from sphinx.application import Sphinx
@@ -15,11 +16,11 @@ class steps_list(nodes.General, nodes.Element):
 
 
 def visit_steps_list(self, _) -> None:
-    pass
+    self.body.append(f'<div class="accordion specssteps-list">')
 
 
 def depart_steps_list(self, _) -> None:
-    pass
+    self.body.append("</div>\n")
 
 
 class step(nodes.Part, nodes.Element):
@@ -27,11 +28,17 @@ class step(nodes.Part, nodes.Element):
 
 
 def visit_step(self, node: step) -> None:
-    self.body.append(self.starttag(node, "details", classes=node["classes"]))
+    self.body.append(
+        self.starttag(
+            node, "div", classes=["accordion-item"] + node["classes"]
+        )
+    )
 
 
 def depart_step(self, _) -> None:
-    self.body.append("</details>\n")
+    self.body.append("</div>\n")
+    self.body.append("</div>\n")
+    self.body.append("</div>\n")
 
 
 class step_title(nodes.Part, nodes.TextElement):
@@ -39,13 +46,19 @@ class step_title(nodes.Part, nodes.TextElement):
 
 
 def visit_step_title(self, node: step_title) -> None:
-    self.body.append("<summary>")
-    self.body.append(self.starttag(node, "span", classes=node["classes"]))
+    self.body.append('<h3 class ="accordion-header">')
+    self.body.append(
+        f'<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{node["ids"][0]}">'
+    )
 
 
-def depart_step_title(self, _) -> None:
-    self.body.append("</span>\n")
-    self.body.append("</summary>\n")
+def depart_step_title(self, node: step_title) -> None:
+    self.body.append("</button>\n")
+    self.body.append("</h3>\n")
+    self.body.append(
+        f'<div id="{node["ids"][0]}" class="accordion-collapse collapse">\n'
+    )
+    self.body.append('<div class="accordion-body">\n')
 
 
 class StepsList(SphinxDirective):
@@ -94,6 +107,27 @@ class Step(SphinxDirective):
         return [node]
 
 
+class StepsIDTransform(SphinxTransform):
+    default_priority = 799
+
+    def apply(self, **kwargs: Any) -> None:
+        for node in self.document.findall(steps_list):
+            section = self.find_section_parent(node)
+            section_id = section["ids"][0]
+
+            counter = 0
+            for step in node.findall(step_title):
+                step["ids"] = [f"{section_id}-step-{counter}"]
+                counter += 1
+
+    def find_section_parent(self, node) -> nodes.section:
+        curr = node
+        while not isinstance(curr, nodes.section):
+            curr = curr.parent
+
+        return curr
+
+
 def setup(app: "Sphinx") -> Dict[str, Any]:
     app.add_node(steps_list, html=(visit_steps_list, depart_steps_list))
     app.add_node(step, html=(visit_step, depart_step))
@@ -101,3 +135,5 @@ def setup(app: "Sphinx") -> Dict[str, Any]:
 
     app.add_directive("stepslist", StepsList)
     app.add_directive("step", Step)
+
+    app.add_transform(StepsIDTransform)
