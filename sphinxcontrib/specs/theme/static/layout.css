@@ -1,3 +1,10 @@
+@import url(https://fonts.bunny.net/css?family=source-sans-3:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i);
+
+:root {
+  --bs-body-font-family: "Source Sans 3", var(--bs-font-sans-serif);
+  --bs-body-font-size: 1.1rem;
+}
+
 .specs-layout {
   display: grid;
   grid-template-areas: "sidebar main";
@@ -86,39 +93,36 @@ h4:hover .headerlink {
   margin-bottom: 0;
 }
 
-.specssteps {
-  counter-reset: steps;
-}
-
-.specssteps details {
-  counter-increment: steps;
-}
-
-.specssteps-title::before {
-  content: counter(steps);
-}
-
-.specssteps-title::after {
-  content: "expand";
-  opacity: 0;
-  transition: color 0.15s ease-in-out, opacity 0.15s ease-in-out;
-  color: gray;
-}
-
-.specssteps summary {
-  list-style: none;
-  cursor: pointer;
-}
-
-.specssteps summary:hover .specssteps-title::after {
-  color: black;
-  opacity: 1;
-}
-
 a {
   text-decoration: none;
 }
 
 .bi {
   padding: 20px;
+}
+
+.specs-sidebar nav {
+  font-size: 0.875rem;
+}
+
+.specs-sidebar nav ul {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.specs-sidebar nav a {
+  color: inherit;
+}
+
+.specs-sidebar nav a:hover {
+  text-decoration: underline;
+}
+
+.specs-sidebar nav > ul > li > a {
+  display: none;
+}
+
+.specs-sidebar nav > ul > li > ul ul {
+  padding-left: 1rem;
 }
