@@ -3,7 +3,7 @@ from pathlib import Path
 
 from sphinx.application import Sphinx
 
-from . import builder, content, objectives, steps
+from . import builder, content, objectives, steps, overridenodes
 
 package_dir = Path(path.abspath(path.dirname(__file__)))
 
@@ -35,3 +35,5 @@ def setup(app: Sphinx) -> None:
 
     # Steps extension
     steps.setup(app)
+
+    overridenodes.setup(app)
