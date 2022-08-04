@@ -34,7 +34,7 @@ def visit_specscontent(self, node: specscontent) -> None:
     self.body.append('<div class="row g-0">\n')
     self.body.append('<div class="col-1">\n')
     self.body.append(
-        '<div class="bg-secondary rounded-start specscontent-icon text-light">\n'
+        '<div class="h-100 bg-secondary rounded-start specscontent-icon text-light">\n'
     )
     self.body.append(node["icon_markup"])
     self.body.append("</div>\n")
