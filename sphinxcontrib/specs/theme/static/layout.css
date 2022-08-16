@@ -91,6 +91,10 @@ summary::after {
   margin-bottom: 2rem;
 }
 
+.specs-content h2 + section {
+  margin-top: 1rem;
+}
+
 .specs-resources {
   grid-area: toc;
 }
@@ -101,6 +105,10 @@ summary::after {
   color: rgba(var(--bs-primary-rgb), 0.5);
   text-decoration: none;
   opacity: 0;
+}
+
+h2 {
+  padding-top: 2rem;
 }
 
 h1:hover .headerlink,
