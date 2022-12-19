@@ -51,6 +51,7 @@ summary::after {
 
 .specs-layout {
   grid-template-areas: "sidebar main";
+  grid-template-columns: 200px minmax(auto, 800px);
   gap: 1.5rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -69,6 +70,10 @@ summary::after {
 .specs-main {
   grid-area: main;
   grid-template-areas:
+    "intro"
+    "content";
+  grid-template-rows: auto auto;
+  grid-template-columns: 100%;
   gap: inherit;
 }
 

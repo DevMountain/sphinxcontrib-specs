@@ -23,6 +23,8 @@
   </head>
   <body>
     {%- block content %}
+      <div class="specs specs-layout mx-5 d-block d-lg-grid">
+        <aside class="specs-sidebar text-muted d-none d-lg-block">
           <strong class="d-none d-md-block h6 my-2">On this page</strong>
           <hr class="d-none d-md-block my-2">
           <nav class="d-none d-md-block">
@@ -30,6 +32,7 @@
           </nav>
         </aside>
 
+        <main class="specs-main d-block d-lg-grid">
           <div class="specs-resources"></div>
           <div class="specs-content">
             {% block body %} {% endblock %}
