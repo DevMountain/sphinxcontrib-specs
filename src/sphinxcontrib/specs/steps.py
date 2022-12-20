@@ -29,9 +29,7 @@ class step(nodes.Part, nodes.Element):
 
 def visit_step(self, node: step) -> None:
     self.body.append(
-        self.starttag(
-            node, "div", classes=["accordion-item"] + node["classes"]
-        )
+        self.starttag(node, "div", classes=["accordion-item"] + node["classes"])
     )
 
 
@@ -50,9 +48,11 @@ def visit_step_title(self, node: step_title) -> None:
     self.body.append(
         f'<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{node["ids"][0]}">'
     )
+    self.body.append('<span class="specssteps-title">')
 
 
 def depart_step_title(self, node: step_title) -> None:
+    self.body.append("</span>")
     self.body.append("</button>\n")
     self.body.append("</h3>\n")
     self.body.append(
