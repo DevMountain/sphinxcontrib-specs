@@ -70,7 +70,7 @@ summary::after {
 .specs-main {
   grid-area: main;
   grid-template-areas:
-    "intro"
+    "content"
     "content";
   grid-template-rows: auto auto;
   grid-template-columns: 100%;
@@ -79,6 +79,16 @@ summary::after {
 
 .specs-content {
   grid-area: content;
+}
+
+.specs-content > section:first-child > h1:first-child {
+  font-weight: 300;
+  font-size: 3rem;
+}
+
+.specs-content > section:first-child > h1:first-child + p {
+  font-weight: 300;
+  font-size: 1.5rem;
 }
 
 .specs-content section {
@@ -104,6 +114,7 @@ summary::after {
 
 h2 {
   padding-top: 2rem;
+  font-weight: 600;
 }
 
 h1:hover .headerlink,
@@ -316,4 +327,16 @@ pre.console .cmd {
 
 pre.console .comment {
   color: var(--bs-gray-600);
+}
+
+dl {
+  padding-inline-start: 1.25rem;
+}
+
+dd {
+  padding-inline-start: 0.5rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
 }
