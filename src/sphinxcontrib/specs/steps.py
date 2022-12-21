@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING, Dict, Any, List
 
 from docutils import nodes
 from docutils.nodes import Node
+from docutils.parsers.rst import directives
 from sphinx.util.docutils import SphinxDirective
 from sphinx.transforms import SphinxTransform
 
@@ -15,8 +16,11 @@ class steps_list(nodes.General, nodes.Element):
     pass
 
 
-def visit_steps_list(self, _) -> None:
-    self.body.append(f'<div class="accordion specssteps-list">')
+def visit_steps_list(self, node: steps_list) -> None:
+    classes = ["accordion"] + node["classes"]
+    if "hidenums" in node.attributes:
+        classes += ["hide-step-nums"]
+    self.body.append(self.starttag(node, "div", classes=classes))
 
 
 def depart_steps_list(self, _) -> None:
@@ -63,9 +67,12 @@ def depart_step_title(self, node: step_title) -> None:
 
 class StepsList(SphinxDirective):
     has_content = True
+    option_spec = {"hidenums": directives.flag}
 
     def run(self) -> List[Node]:
-        node = steps_list("\n".join(self.content))
+        node = steps_list(
+            "\n".join(self.content), classes=["specssteps-list"], **self.options
+        )
 
         node.document = self.state.document
         self.state.nested_parse(self.content, self.content_offset, node)

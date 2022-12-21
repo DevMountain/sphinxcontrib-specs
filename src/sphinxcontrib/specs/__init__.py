@@ -3,14 +3,14 @@ from pathlib import Path
 
 from sphinx.application import Sphinx
 
-from . import builder, content, objectives, steps, overridenodes
+from . import builder, content, objectives, steps, overridenodes, overridedirectives
 
 package_dir = Path(path.abspath(path.dirname(__file__)))
 
 
 def setup(app: Sphinx) -> None:
     # Theme
-    app.add_html_theme("specs", (package_dir / "theme").resolve())
+    app.add_html_theme("specs", str((package_dir / "theme").resolve()))
 
     # Static files
     app.add_css_file(
@@ -37,3 +37,4 @@ def setup(app: Sphinx) -> None:
     steps.setup(app)
 
     overridenodes.setup(app)
+    overridedirectives.setup(app)
