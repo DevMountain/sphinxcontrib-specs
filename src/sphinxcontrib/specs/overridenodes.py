@@ -3,6 +3,7 @@
 from docutils import nodes
 from sphinx.application import Sphinx
 from sphinx.writers.html5 import HTML5Translator
+from sphinx import addnodes
 
 
 super_visit_hint = HTML5Translator.visit_hint
@@ -50,27 +51,39 @@ def depart_attribution(self, node: nodes.attribution):
 
 
 def visit_definition_list(self, node: nodes.definition_list):
-    self.body.append('<dl class="row">')
+    if isinstance(node.parent, addnodes.glossary):
+        super(HTML5Translator, self).visit_definition_list(node)
+    else:
+        self.body.append('<dl class="row">')
 
 
 def depart_definition_list(self, node: nodes.definition_list):
-    self.body.append("</dl>")
+    super(HTML5Translator, self).depart_definition_list(node)
 
 
 def visit_term(self, node: nodes.term):
-    self.body.append('<dt class="col-sm-4">')
+    if isinstance(node.parent.parent.parent, addnodes.glossary):
+        self.body.append(self.starttag(node, "dt", "", CLASS="h4"))
+    else:
+        self.body.append('<dt class="col-sm-4">')
 
 
 def depart_term(self, node: nodes.term):
-    self.body.append("</dt>")
+    if isinstance(node.parent.parent.parent, addnodes.glossary):
+        self.add_permalink_ref(node, "Permalink to this term")
+
+    super(HTML5Translator, self).depart_term(node)
 
 
 def visit_definition(self, node: nodes.definition):
-    self.body.append('<dd class="col-sm-8">')
+    if isinstance(node.parent.parent.parent, addnodes.glossary):
+        super(HTML5Translator, self).visit_definition(node)
+    else:
+        self.body.append('<dd class="col-sm-8">')
 
 
 def depart_definition(self, node: nodes.definition):
-    self.body.append("</dd>")
+    super(HTML5Translator, self).depart_definition(node)
 
 
 def visit_admonition(self, node: nodes.Element, name: str = ""):
