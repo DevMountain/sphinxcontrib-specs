@@ -25,10 +25,20 @@
     {%- block content %}
       <div class="specs specs-layout mx-5 d-block d-lg-grid">
         <aside class="specs-sidebar text-muted d-none d-lg-block">
-          <strong class="d-none d-md-block h6 my-2">On this page</strong>
+          <strong class="d-none d-md-block h6 my-2">
+            {%- if builder == 'html' %}
+              Contents
+            {%- elif builder == 'singlehtml' %}
+              On this page
+            {%- endif %}
+          </strong>
           <hr class="d-none d-md-block my-2">
           <nav class="d-none d-md-block">
-            {{ toc }}
+            {%- if builder == 'html' %}
+              {{ toctree(maxdepth=-1, collapse=False) }}
+            {%- elif builder == 'singlehtml' %}
+              {{ toc }}
+            {%- endif %}
           </nav>
         </aside>
 
