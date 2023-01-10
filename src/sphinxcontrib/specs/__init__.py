@@ -24,9 +24,6 @@ def setup(app: Sphinx) -> None:
         "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
     )
 
-    # Builder
-    app.add_builder(builder.SpecsBuilder)
-
     # Contentlist extension
     content.setup(app)
 
