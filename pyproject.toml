@@ -16,6 +16,12 @@ mypy = "^0.961"
 html5lib = "^1.1"
 Sphinx = "^5.3"
 
+[tool.poetry.group.dev.dependencies]
+sphinx-autobuild = "^2021.3.14"
+
+[tool.poetry.group.buildExamples.dependencies]
+jsx-lexer = "^2.0.0"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
