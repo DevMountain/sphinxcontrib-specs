@@ -1,9 +1,8 @@
 from typing import TYPE_CHECKING
 
+from docutils import nodes
 from docutils.parsers.rst.directives.admonitions import BaseAdmonition
 from docutils.parsers.rst.roles import set_classes
-from docutils import nodes
-
 from sphinx.writers.html5 import HTML5Translator
 
 if TYPE_CHECKING:
@@ -43,47 +42,38 @@ class OverrideAdmonition(BaseAdmonition):
 
 
 class Attention(OverrideAdmonition):
-
     node_class = nodes.attention
 
 
 class Caution(OverrideAdmonition):
-
     node_class = nodes.caution
 
 
 class Danger(OverrideAdmonition):
-
     node_class = nodes.danger
 
 
 class Error(OverrideAdmonition):
-
     node_class = nodes.error
 
 
 class Hint(OverrideAdmonition):
-
     node_class = nodes.hint
 
 
 class Important(OverrideAdmonition):
-
     node_class = nodes.important
 
 
 class Note(OverrideAdmonition):
-
     node_class = nodes.note
 
 
 class Tip(OverrideAdmonition):
-
     node_class = nodes.tip
 
 
 class Warning(OverrideAdmonition):
-
     node_class = nodes.warning
 
 
@@ -149,8 +139,7 @@ def visit_note(self, node: nodes.note):
 
 def depart_hint(self, node: nodes.hint):
     self.body.append("</details>")
-
-    super(HTML5Translator, self).depart_hint(node)
+    depart_admonition(self, node)
 
 
 def visit_paragraph(self, node: nodes.paragraph):
@@ -159,7 +148,7 @@ def visit_paragraph(self, node: nodes.paragraph):
 
 
 def depart_paragraph(self, node: nodes.paragraph):
-    super(HTML5Translator, self).depart_paragraph(node)
+    super(self.__class__, self).depart_paragraph(node)
 
     # For handling hints
     if "admonition-title" in node["classes"] and isinstance(node.parent, nodes.hint):
